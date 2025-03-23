@@ -4,21 +4,9 @@ heroImage: /logo.svg
 heroHeight: 160
 actionText: Get Started →
 actions:
-  - text: Get Started
-    link: /guide
-  - text: Sandbox
-    link: /sandbox
-    type: secondary
   - text: API
     link: /api/
     type: secondary
-features:
-  - title: Functional Programming
-    details: All APIs are provided in a functional programming manner, making it easy to compose and transform paths.
-  - title: Environment Agnostic
-    details: Works with any JavaScript environment - Canvas API, SVG, p5.js, Paper.js, etc.
-  - title: Powerful Features
-    details: Create primitives, calculate positions/normals/tangents, offset paths, resample curves, and more.
 ---
 
 <div class="badges">

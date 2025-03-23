@@ -1,7 +1,7 @@
 {
 	"name": "geome",
 	"version": "0.0.0",
-	"description": "A environment-agnostic toolkit for manipulating SVG/Path2D curves.",
+	"description": "A collection of types and functions for geometry..",
 	"type": "module",
 	"main": "./lib/index.js",
 	"module": "./lib/index.js",

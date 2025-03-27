@@ -68,8 +68,9 @@ export namespace Line {
 			return null
 		}
 
-		const x = (l1.b * l2.c - l1.c * l2.b) / d
-		const y = (l1.c * l2.a - l1.a * l2.c) / d
+		// Cramer's rule
+		const x = (l1.c * l2.b - l1.b * l2.c) / d
+		const y = (l1.a * l2.c - l1.c * l2.a) / d
 
 		return [x, y]
 	}

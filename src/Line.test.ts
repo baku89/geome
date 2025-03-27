@@ -36,4 +36,12 @@ describe('Line', () => {
 			expect(Line.approx(line1, line2)).toBe(true)
 		})
 	})
+
+	describe('intersection', () => {
+		it('should return the intersection point of two lines', () => {
+			const line1 = Line.fromPoints([0, 0], [1, 0])
+			const line2 = Line.fromPoints([1, 0], [1, 1])
+			expect(Line.intersection(line1, line2)).toEqual([1, 0])
+		})
+	})
 })

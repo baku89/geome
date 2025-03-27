@@ -6,11 +6,11 @@
 <a href="https://baku89.github.io/geome/">Documentation</a> ⌇ <a href="https://github.com/sponsors/baku89">Become a Sponsor</a>
 
 <p>
-  <a href="https://www.npmjs.org/package/@baku89/geome">
-    <img src="https://img.shields.io/npm/v/@baku89/geome.svg?style=flat" alt="npm version">
+  <a href="https://www.npmjs.org/package/geome">
+    <img src="https://img.shields.io/npm/v/geome.svg?style=flat" alt="npm version">
   </a>
   <a href="http://spdx.org/licenses/MIT">
-    <img src="https://img.shields.io/npm/l/@baku89/geome.svg?style=flat" alt="npm license">
+    <img src="https://img.shields.io/npm/l/geome.svg?style=flat" alt="npm license">
   </a>
   <img src="https://github.com/baku89/geome/actions/workflows/ci.yml/badge.svg" alt="CI test result" />
 </p>

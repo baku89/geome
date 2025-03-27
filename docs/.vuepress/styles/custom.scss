@@ -1,0 +1,9 @@
+:root {
+	// accent colors
+	--vp-c-accent: blue;
+}
+
+[data-theme='dark'] {
+	// brand colors
+	--vp-c-accent: rgb(99, 99, 253);
+}

@@ -11,6 +11,9 @@ export type Circle = {readonly center: vec2; readonly radius: number}
  * @category Modules
  */
 export namespace Circle {
+	/** A unit circle. */
+	export const unit = Object.freeze({center: [0, 0], radius: 1})
+
 	/**
 	 * Returns the circumscribed circle of the given triangle.
 	 * @param a The first point of the triangle
@@ -38,5 +41,17 @@ export namespace Circle {
 		const radius = vec2.dist(center, a)
 
 		return {center, radius}
+	}
+
+	/**
+	 * Returns whether the given two circles are approximately equal.
+	 * @param c1 The first circle
+	 * @param c2 The second circle
+	 * @returns Whether the given two circles are approximately equal
+	 */
+	export function approx(c1: Circle, c2: Circle): boolean {
+		return (
+			vec2.approx(c1.center, c2.center) && scalar.approx(c1.radius, c2.radius)
+		)
 	}
 }

@@ -7,16 +7,6 @@
 	"sort": ["alphabetical"],
 	"cleanOutputDir": true,
 	"includeVersion": true,
-	"categoryOrder": [
-		"Primitives",
-		"Properties",
-		"Modifiers",
-		"Boolean Operations",
-		"Converters",
-		"Draw Functions",
-		"Utilities",
-		"*"
-	],
 
 	"outputFileStrategy": "modules",
 

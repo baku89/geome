@@ -46,6 +46,21 @@ export namespace Line {
 	}
 
 	/**
+	 * Returns the projection of the given point onto the given line.
+	 * @param l The line
+	 * @param p The point
+	 * @returns The projection of the given point onto the given line
+	 */
+	export function project(l: Line, p: vec2): vec2 {
+		const a = l.a
+		const b = l.b
+		const c = l.c
+
+		const t = (a * p[0] + b * p[1] + c) / (a * a + b * b)
+		return [p[0] - a * t, p[1] - b * t]
+	}
+
+	/**
 	 * Returns the distance from the given point to the given line.
 	 * @param l The line
 	 * @param p The point

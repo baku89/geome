@@ -1,4 +1,4 @@
-import {vec2} from 'linearly'
+import {mat2d, vec2} from 'linearly'
 
 /**
  * A 2D rect represented as a tuple of two diagonal points. It must be guaranteed that the first point is the minimum and the second one is the maximum in the x and y axes.
@@ -81,6 +81,35 @@ export namespace Rect {
 	export function size(bbox: Rect): vec2 {
 		const [min, max] = bbox
 		return vec2.sub(max, min)
+	}
+
+	/**
+	 * Get the width of the given rect.
+	 * @param bbox The rect to get the width of
+	 * @returns The width of the rect
+	 * @category Properties
+	 */
+	function width(bbox: Rect): number {
+		return bbox[1][0] - bbox[0][0]
+	}
+
+	/**
+	 * Get the height of the given rect.
+	 * @param bbox The rect to get the height of
+	 * @returns The height of the rect
+	 * @category Properties
+	 */
+	function height(bbox: Rect): number {
+		return bbox[1][1] - bbox[0][1]
+	}
+
+	/**
+	 * Gets the aspect ratio of a rect, which can be calculated by `width / height`.
+	 * @param rect The rect
+	 * @returns The aspect ratio
+	 */
+	function aspectRatio(rect: Rect): number {
+		return width(rect) / height(rect)
 	}
 
 	/**
@@ -273,5 +302,59 @@ export namespace Rect {
 			[minX, minY],
 			[maxX, maxY],
 		]
+	}
+
+	/**
+	 * Calculates the transform matrix from given frame and object rects, like CSS's object-fit property.
+	 * @param frame The frame rect
+	 * @param object The object rect
+	 * @param mode The mode to fit the object in the frame
+	 * @returns The transform matrix
+	 */
+	export function objectFit(
+		frame: Rect,
+		object: Rect,
+		mode: 'fit' | 'contain' | 'fill' = 'fit'
+	): mat2d {
+		const frameSize = Rect.size(frame)
+		const objectSize = Rect.size(object)
+
+		const frameRatio = aspectRatio(frame)
+		const objectRatio = aspectRatio(object)
+
+		if (mode === 'fill') {
+			return mat2d.trs(vec2.zero, null, vec2.div(frameSize, objectSize))
+		}
+
+		const scaleByWidth =
+			mode === 'fit' ? frameRatio < objectRatio : frameRatio > objectRatio
+
+		if (scaleByWidth) {
+			/**
+			 * ┌────────┐
+			 * ├────────┤
+			 * │ object │
+			 * ├────────┤
+			 * └────────┘
+			 */
+			// Fit width
+			const scale = frameSize[0] / objectSize[0]
+			const offset: vec2 = [0, (frameSize[1] - objectSize[1] * scale) / 2]
+
+			return mat2d.trs(offset, null, scale)
+		} else {
+			/**
+			 * ┌┬──────┬┐
+			 * ││      ││
+			 * ││object││
+			 * ││      ││
+			 * └┴──────┴┘
+			 */
+			// Fit height
+			const scale = frameSize[1] / objectSize[1]
+			const offset: vec2 = [(frameSize[0] - objectSize[0] * scale) / 2, 0]
+
+			return mat2d.trs(offset, null, scale)
+		}
 	}
 }

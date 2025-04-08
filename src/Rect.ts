@@ -23,6 +23,16 @@ export namespace Rect {
 			[domRect.right, domRect.bottom],
 		]
 	}
+	/**
+	 * Creates a rect from the given DOM element using `getBoundingClientRect`.
+	 * @param dom The DOM element to create a rect from
+	 * @returns The created rect
+	 * @category Generators
+	 */
+	export function fromDOM(dom: HTMLElement): Rect {
+		const rect = dom.getBoundingClientRect()
+		return Rect.fromDOMRect(rect)
+	}
 
 	/**
 	 * Creates a rect that contains all the given points.
@@ -70,6 +80,26 @@ export namespace Rect {
 	export function fromCenter(center: vec2, size: vec2): Rect {
 		const halfSize = vec2.scale(size, 0.5)
 		return fromPoints(vec2.sub(center, halfSize), vec2.scale(size, 2))
+	}
+
+	/**
+	 * Returns a min point of the given rect.
+	 * @param bbox The rect to get the min point of
+	 * @returns The min point of the rect
+	 * @category Properties
+	 */
+	export function min(bbox: Rect): vec2 {
+		return bbox[0]
+	}
+
+	/**
+	 * Returns a max point of the given rect.
+	 * @param bbox The rect to get the max point of
+	 * @returns The max point of the rect
+	 * @category Properties
+	 */
+	export function max(bbox: Rect): vec2 {
+		return bbox[1]
 	}
 
 	/**
@@ -302,6 +332,18 @@ export namespace Rect {
 			[minX, minY],
 			[maxX, maxY],
 		]
+	}
+
+	/**
+	 * Linearly interpolates between two rects.
+	 * @param a The first rect
+	 * @param b The second rect
+	 * @param t The interpolation factor
+	 * @returns The interpolated rect
+	 * @category Properties
+	 */
+	export function lerp(a: Rect, b: Rect, t: number): Rect {
+		return [vec2.lerp(a[0], b[0], t), vec2.lerp(a[1], b[1], t)]
 	}
 
 	/**

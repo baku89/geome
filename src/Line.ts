@@ -43,7 +43,7 @@ export namespace Line {
 	 * @returns A line passing through the given two points
 	 */
 	export function fromPoints(p1: vec2, p2: vec2): Line | null {
-		if (vec2.approx(p1, p2)) {
+		if (vec2.eq(p1, p2)) {
 			return null
 		}
 

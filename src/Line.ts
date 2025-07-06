@@ -1,4 +1,4 @@
-import {scalar, vec2} from 'linearly'
+import {mat2d, scalar, vec2} from 'linearly'
 
 /**
  * A line represented by the angle of its normal vector (in degrees) and the signed distance from the origin.
@@ -194,5 +194,28 @@ export namespace Line {
 	export function invert(line: Line): Line {
 		const oppositeTheta = scalar.mod(line.theta + 180, 360)
 		return {theta: oppositeTheta, offset: -line.offset}
+	}
+
+	/**
+	 * Returns a mat2d that reflects points across the given line.
+	 * @param line The line to use as the axis of reflection
+	 * @returns A mat2d transformation matrix for reflection
+	 */
+	export function reflectionMatrix(line: Line): mat2d {
+		// Convert line to normal form: ax + by + c = 0
+		// where (a, b) is the normal vector
+		const [a, b] = vec2.dir(line.theta)
+		const c = line.offset
+
+		// Reflection matrix formula: I - 2 * n * n^T
+		// where n is the normalized normal vector
+		return [
+			1 - 2 * a * a,
+			-2 * a * b,
+			-2 * a * b,
+			1 - 2 * b * b,
+			2 * c * a,
+			2 * c * b,
+		]
 	}
 }

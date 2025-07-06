@@ -133,4 +133,37 @@ describe('Line', () => {
 			expect(Line.approx(original, doubleInverted)).toBe(true)
 		})
 	})
+
+	describe('reflectionMatrix', () => {
+		it('should return a matrix that reflects points across the x-axis', () => {
+			const line = Line.xAxis
+			const matrix = Line.reflectionMatrix(line)
+			expect(matrix).toEqual([1, 0, 0, -1, 0, 0])
+		})
+		it('should return a matrix that reflects points across the y-axis', () => {
+			const line = Line.yAxis
+			const matrix = Line.reflectionMatrix(line)
+			expect(matrix).toEqual([-1, 0, 0, 1, 0, 0])
+		})
+		it('should return a matrix that reflects points across the line y = x', () => {
+			const line = Line.fromPoints([0, 0], [1, 1])
+			const matrix = Line.reflectionMatrix(line)
+			expect(matrix).toEqual([0, 1, 1, 0, 0, 0])
+		})
+		it('should return a matrix that reflects points across the line x = 1', () => {
+			const line = Line.fromPoints([1, 0], [1, 1])
+			const matrix = Line.reflectionMatrix(line)
+			expect(matrix).toEqual([-1, 0, 0, 1, 2, 0])
+		})
+		it('should return a matrix that reflects points across the line y = -1', () => {
+			const line = Line.fromPoints([0, -1], [1, -1])
+			const matrix = Line.reflectionMatrix(line)
+			expect(matrix).toEqual([1, 0, 0, -1, 0, -2])
+		})
+		it('should return a matrix that reflects points across the line y = -x + 1', () => {
+			const line = Line.fromPoints([0, 1], [1, 0])
+			const matrix = Line.reflectionMatrix(line)
+			expect(matrix).toEqual([0, -1, -1, 0, 1, 1])
+		})
+	})
 })

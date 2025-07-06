@@ -43,5 +43,44 @@ describe('Line', () => {
 			const line2 = Line.fromPoints([1, 0], [1, 1])
 			expect(Line.intersection(line1, line2)).toEqual([1, 0])
 		})
+		it('should return null if the lines are parallel', () => {
+			const line1 = Line.fromPoints([0, 0], [1, 0])
+			const line2 = Line.fromPoints([0, 1], [1, 1])
+			expect(Line.intersection(line1, line2)).toBeNull()
+		})
+	})
+
+	describe('project', () => {
+		it('should project a point onto the line', () => {
+			const line = Line.fromPoints([0, 0], [1, 0])
+			// Project (1, 1) onto x-axis
+			expect(Line.project(line, [1, 1])).toEqual([1, 0])
+		})
+	})
+
+	describe('isParallel', () => {
+		it('should return true for parallel lines', () => {
+			const l1 = Line.fromPoints([0, 0], [1, 1])
+			const l2 = Line.fromPoints([1, 1], [2, 2])
+			expect(Line.isParallel(l1, l2)).toBe(true)
+		})
+		it('should return false for non-parallel lines', () => {
+			const l1 = Line.fromPoints([0, 0], [1, 0])
+			const l2 = Line.fromPoints([0, 0], [0, 1])
+			expect(Line.isParallel(l1, l2)).toBe(false)
+		})
+	})
+
+	describe('isPerpendicular', () => {
+		it('should return true for perpendicular lines', () => {
+			const l1 = Line.fromPoints([0, 0], [1, 0])
+			const l2 = Line.fromPoints([0, 0], [0, 1])
+			expect(Line.isPerpendicular(l1, l2)).toBe(true)
+		})
+		it('should return false for non-perpendicular lines', () => {
+			const l1 = Line.fromPoints([0, 0], [1, 0])
+			const l2 = Line.fromPoints([0, 0], [1, 1])
+			expect(Line.isPerpendicular(l1, l2)).toBe(false)
+		})
 	})
 })

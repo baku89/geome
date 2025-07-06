@@ -140,12 +140,12 @@ export namespace Line {
 	}
 
 	/**
-	 * Returns whether the given two lines are approximately equal, including lines with opposite directions.
+	 * Returns whether the given two lines are approximately same, including lines with opposite directions.
 	 * @param l1 The first line
 	 * @param l2 The second line
-	 * @returns Whether the given two lines are approximately equal (including opposite directions)
+	 * @returns Whether the given two lines are approximately same (including opposite directions)
 	 */
-	export function same(l1: Line, l2: Line): boolean {
+	export function approxSame(l1: Line, l2: Line): boolean {
 		// Check if lines are exactly the same
 		if (approx(l1, l2)) {
 			return true

@@ -40,17 +40,17 @@ describe('Line', () => {
 	describe('same', () => {
 		it('should return true if the two lines are exactly the same', () => {
 			const line1 = Line.fromPoints([0, 0], [1, 0])
-			expect(Line.same(line1, line1)).toBe(true)
+			expect(Line.approxSame(line1, line1)).toBe(true)
 		})
 		it('should return true if the two lines have opposite directions', () => {
 			const line1 = Line.fromPoints([0, 0], [1, 0])
 			const line2 = Line.fromPoints([1, 0], [0, 0])
-			expect(Line.same(line1, line2)).toBe(true)
+			expect(Line.approxSame(line1, line2)).toBe(true)
 		})
 		it('should return false for different lines', () => {
 			const line1 = Line.fromPoints([0, 0], [1, 0])
 			const line2 = Line.fromPoints([0, 0], [0, 1])
-			expect(Line.same(line1, line2)).toBe(false)
+			expect(Line.approxSame(line1, line2)).toBe(false)
 		})
 	})
 

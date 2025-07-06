@@ -46,12 +46,12 @@ export namespace Line {
 	}
 
 	/**
-	 * Returns the projection of the given point onto the given line.
+	 * Returns the closest point on the given line to the given point.
 	 * @param l The line
 	 * @param p The point
-	 * @returns The projection of the given point onto the given line
+	 * @returns The closest point on the given line to the given point
 	 */
-	export function project(l: Line, p: vec2): vec2 {
+	export function closest(l: Line, p: vec2): vec2 {
 		const a = l.a
 		const b = l.b
 		const c = l.c

@@ -50,11 +50,11 @@ describe('Line', () => {
 		})
 	})
 
-	describe('project', () => {
-		it('should project a point onto the line', () => {
+	describe('closest', () => {
+		it('should return the closest point on the line to the given point', () => {
 			const line = Line.fromPoints([0, 0], [1, 0])
-			// Project (1, 1) onto x-axis
-			expect(Line.project(line, [1, 1])).toEqual([1, 0])
+			// Closest point on x-axis to (1, 1)
+			expect(Line.closest(line, [1, 1])).toEqual([1, 0])
 		})
 	})
 

@@ -122,6 +122,25 @@ export namespace Line {
 	}
 
 	/**
+	 * Returns whether the given two lines are approximately equal, including lines with opposite directions.
+	 * @param l1 The first line
+	 * @param l2 The second line
+	 * @returns Whether the given two lines are approximately equal (including opposite directions)
+	 */
+	export function same(l1: Line, l2: Line): boolean {
+		// Check if lines are exactly the same
+		if (approx(l1, l2)) {
+			return true
+		}
+
+		// Check if lines have opposite directions (theta differs by 180 degrees)
+		const oppositeTheta = scalar.mod(l1.theta + 180, 360)
+		const oppositeLine: Line = {theta: oppositeTheta, offset: -l1.offset}
+
+		return approx(oppositeLine, l2)
+	}
+
+	/**
 	 * Returns whether the given two lines are parallel.
 	 * @param l1 The first line
 	 * @param l2 The second line

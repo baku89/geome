@@ -104,4 +104,33 @@ describe('Line', () => {
 			expect(Line.isPerpendicular(l1, l2)).toBe(false)
 		})
 	})
+
+	describe('invert', () => {
+		it('should return a line with opposite direction', () => {
+			const line = Line.of(45, 2)
+			const inverted = Line.invert(line)
+
+			// Check that theta is rotated by 180 degrees
+			expect(inverted.theta).toBe(225)
+			// Check that offset is negated
+			expect(inverted.offset).toBe(-2)
+		})
+
+		it('should handle theta values that wrap around 360 degrees', () => {
+			const line = Line.of(270, 1)
+			const inverted = Line.invert(line)
+
+			// 270 + 180 = 450, which should be normalized to 90
+			expect(inverted.theta).toBe(90)
+			expect(inverted.offset).toBe(-1)
+		})
+
+		it('should preserve the original line when inverted twice', () => {
+			const original = Line.of(60, 3)
+			const inverted = Line.invert(original)
+			const doubleInverted = Line.invert(inverted)
+
+			expect(Line.approx(original, doubleInverted)).toBe(true)
+		})
+	})
 })

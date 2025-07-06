@@ -185,4 +185,14 @@ export namespace Line {
 		const angleDiff = Math.abs(theta1 - theta2)
 		return scalar.approx(angleDiff, 90)
 	}
+
+	/**
+	 * Returns a line with the opposite direction.
+	 * @param line The line to invert
+	 * @returns A line with the opposite direction
+	 */
+	export function invert(line: Line): Line {
+		const oppositeTheta = scalar.mod(line.theta + 180, 360)
+		return {theta: oppositeTheta, offset: -line.offset}
+	}
 }

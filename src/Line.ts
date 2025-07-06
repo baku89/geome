@@ -110,28 +110,15 @@ export namespace Line {
 	}
 
 	/**
-	 * Returns whether the given two lines are approximately equal.
+	 * Returns whether the given two lines are approximately equal. Lines with opposite direction are considered different.
 	 * @param l1 The first line
 	 * @param l2 The second line
 	 * @returns Whether the given two lines are approximately equal
 	 */
 	export function approx(l1: Line, l2: Line): boolean {
-		// Normalize angles to 0-360 range
-		const theta1 = ((l1.theta % 360) + 360) % 360
-		const theta2 = ((l2.theta % 360) + 360) % 360
-
-		// Check if angles are approximately equal (considering both directions)
-		const angleDiff = Math.abs(theta1 - theta2)
-		const isAngleEqual =
-			scalar.approx(angleDiff, 0) || scalar.approx(angleDiff, 180)
-
-		// If angles are equal, check offset
-		if (isAngleEqual) {
-			const offsetDiff = Math.abs(l1.offset - l2.offset)
-			return scalar.approx(offsetDiff, 0)
-		}
-
-		return false
+		return (
+			scalar.approx(l1.theta, l2.theta) && scalar.approx(l1.offset, l2.offset)
+		)
 	}
 
 	/**
@@ -141,13 +128,10 @@ export namespace Line {
 	 * @returns Whether the given two lines are parallel
 	 */
 	export function isParallel(l1: Line, l2: Line): boolean {
-		// Normalize angles to 0-360 range
-		const theta1 = ((l1.theta % 360) + 360) % 360
-		const theta2 = ((l2.theta % 360) + 360) % 360
+		const theta1 = scalar.mod(l1.theta, 180)
+		const theta2 = scalar.mod(l2.theta, 180)
 
-		// Check if angles are approximately equal or opposite
-		const angleDiff = Math.abs(theta1 - theta2)
-		return scalar.approx(angleDiff, 0) || scalar.approx(angleDiff, 180)
+		return scalar.approx(theta1, theta2)
 	}
 
 	/**
@@ -157,12 +141,11 @@ export namespace Line {
 	 * @returns Whether the given two lines are perpendicular
 	 */
 	export function isPerpendicular(l1: Line, l2: Line): boolean {
-		// Normalize angles to 0-360 range
-		const theta1 = ((l1.theta % 360) + 360) % 360
-		const theta2 = ((l2.theta % 360) + 360) % 360
+		// Normalize angles to [0, 180) range and check if they differ by 90 degrees
+		const theta1 = scalar.mod(l1.theta, 180)
+		const theta2 = scalar.mod(l2.theta, 180)
 
-		// Check if angles differ by 90 degrees
 		const angleDiff = Math.abs(theta1 - theta2)
-		return scalar.approx(angleDiff, 90) || scalar.approx(angleDiff, 270)
+		return scalar.approx(angleDiff, 90)
 	}
 }

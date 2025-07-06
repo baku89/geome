@@ -25,10 +25,14 @@ describe('Line', () => {
 	})
 
 	describe('approx', () => {
-		it('should return true if for the two inverted lines', () => {
+		it('should return true if the two lines are the same', () => {
+			const line1 = Line.fromPoints([0, 0], [1, 0])
+			expect(Line.approx(line1, line1)).toBe(true)
+		})
+		it('should return false if for the two inverted lines', () => {
 			const line1 = Line.fromPoints([0, 0], [1, 0])
 			const line2 = Line.fromPoints([1, 0], [0, 0])
-			expect(Line.approx(line1, line2)).toBe(true)
+			expect(Line.approx(line1, line2)).toBe(false)
 		})
 	})
 
@@ -70,6 +74,11 @@ describe('Line', () => {
 		it('should return true for perpendicular lines', () => {
 			const l1 = Line.fromPoints([0, 0], [1, 0])
 			const l2 = Line.fromPoints([0, 0], [0, 1])
+			expect(Line.isPerpendicular(l1, l2)).toBe(true)
+		})
+		it('should return true for perpendicular lines whose two theta values cross X axis', () => {
+			const l1 = Line.fromPoints([0, 0], [1, 1])
+			const l2 = Line.fromPoints([0, 0], [1, -1])
 			expect(Line.isPerpendicular(l1, l2)).toBe(true)
 		})
 		it('should return false for non-perpendicular lines', () => {

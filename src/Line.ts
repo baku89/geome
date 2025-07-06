@@ -5,7 +5,12 @@ import {scalar, vec2} from 'linearly'
  * Lines have direction, so two lines with opposite directions are considered different.
  * @category Types
  */
-export type Line = {readonly theta: number; readonly offset: number}
+export type Line = {
+	/** The angle of the normal vector in degrees (should be normalized to 0-360) */
+	readonly theta: number
+	/** The signed distance from the origin */
+	readonly offset: number
+}
 
 /**
  * Functions for manipulating lines represented as {@link Line}.

@@ -37,12 +37,16 @@ export namespace Line {
 	}
 
 	/**
-	 * Returns a line passing through the given two points.
+	 * Returns a line passing through the given two points. If the points are the same, returns `null`.
 	 * @param p1 The first point
 	 * @param p2 The second point
 	 * @returns A line passing through the given two points
 	 */
-	export function fromPoints(p1: vec2, p2: vec2): Line {
+	export function fromPoints(p1: vec2, p2: vec2): Line | null {
+		if (vec2.approx(p1, p2)) {
+			return null
+		}
+
 		// Normal vector is perpendicular to the line direction
 		const delta = vec2.sub(p2, p1)
 		const theta = scalar.mod(vec2.angle(delta) + 90, 360)
@@ -219,7 +223,13 @@ export namespace Line {
 		]
 	}
 
-	export function transform(line: Line, matrix: mat2d): Line {
+	/**
+	 * Returns a line that is the result of transforming the given line using the given matrix.
+	 * @param line The line to transform
+	 * @param matrix The matrix to use for transformation
+	 * @returns A line that is the result of transforming the given line using the given matrix. Returns `null` if the transformation results in a line with zero length.
+	 */
+	export function transform(line: Line, matrix: mat2d): Line | null {
 		// Transform two points on the line using the matrix,
 		// then create a new line from those transformed points
 

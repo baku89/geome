@@ -9,6 +9,10 @@ describe('Line', () => {
 			const line = Line.fromPoints([0, 0], [1, 1])
 			expect(line).toEqual({theta: 135, offset: 0})
 		})
+		it('should return null if the two points are the same', () => {
+			const line = Line.fromPoints([0, 0], [0, 0])
+			expect(line).toBeNull()
+		})
 	})
 
 	describe('fromPointDirection', () => {
@@ -174,6 +178,12 @@ describe('Line', () => {
 			const matrix = mat2d.scaling([-1, 1])
 			const transformed = Line.transform(line, matrix)
 			expect(transformed).toEqual(Line.of(225, 0))
+		})
+		it('should return null if the transformation results in a line with zero length', () => {
+			const line = Line.fromPoints([0, 0], [1, 1])
+			const matrix = mat2d.scaling([0, 0])
+			const transformed = Line.transform(line, matrix)
+			expect(transformed).toBeNull()
 		})
 	})
 })

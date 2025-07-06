@@ -10,9 +10,9 @@ describe('Line', () => {
 		})
 	})
 
-	describe('fromPointAngle', () => {
-		it('should create a line from a point and an angle', () => {
-			const line = Line.fromPointAngle([0, 0], 45)
+	describe('fromPointDirection', () => {
+		it('should create a line from a point and a direction', () => {
+			const line = Line.fromPointDirection([0, 0], 45)
 			expect(line).toEqual({theta: 135, offset: 0})
 		})
 	})

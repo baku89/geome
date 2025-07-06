@@ -37,12 +37,12 @@ export namespace Line {
 	}
 
 	/**
-	 * Returns a line passing through the given point and making the given angle with the positive x-axis.
+	 * Returns a line passing through the given point in the given direction.
 	 * @param p The point
-	 * @param deg The angle in degrees
-	 * @returns A line passing through the given point and making the given angle with the positive x-axis
+	 * @param deg The direction angle in degrees (0 = x+)
+	 * @returns A line passing through the given point in the given direction
 	 */
-	export function fromPointAngle(p: vec2, deg: number): Line {
+	export function fromPointDirection(p: vec2, deg: number): Line {
 		const theta = scalar.mod(deg + 90, 360)
 		const normal = vec2.dir(theta)
 		const offset = vec2.dot(p, normal)

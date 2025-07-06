@@ -73,6 +73,10 @@ export namespace Segment {
 		const ab = Line.fromPoints(x1, y1)
 		const cd = Line.fromPoints(x2, y2)
 
+		if (ab === null || cd === null) {
+			return null
+		}
+
 		const intersection = Line.intersection(ab, cd)
 		if (intersection === null) {
 			return null

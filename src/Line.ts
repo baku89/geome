@@ -24,6 +24,19 @@ export namespace Line {
 	export const yAxis = Object.freeze({theta: 0, offset: 0})
 
 	/**
+	 * Creates a line from theta and offset values.
+	 * @param theta The angle of the normal vector in degrees (will be normalized to 0-360)
+	 * @param offset The signed distance from the origin
+	 * @returns A line with the given theta and offset
+	 */
+	export function of(theta: number, offset: number): Line {
+		return {
+			theta: scalar.mod(theta, 360),
+			offset,
+		}
+	}
+
+	/**
 	 * Returns a line passing through the given two points.
 	 * @param p1 The first point
 	 * @param p2 The second point

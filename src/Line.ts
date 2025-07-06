@@ -218,4 +218,25 @@ export namespace Line {
 			2 * c * b,
 		]
 	}
+
+	export function transform(line: Line, matrix: mat2d): Line {
+		// Transform two points on the line using the matrix,
+		// then create a new line from those transformed points
+
+		const normal = vec2.dir(line.theta)
+
+		// Get two points on the line by using the normal and offset
+		// Point 1: closest point to origin
+		const p1 = vec2.scale(normal, line.offset)
+
+		// Point 2: move along line direction (perpendicular to normal)
+		const p2 = vec2.dir(line.theta - 90, 1, p1)
+
+		// Transform both points using the matrix
+		const transformedP1 = vec2.transformMat2d(p1, matrix)
+		const transformedP2 = vec2.transformMat2d(p2, matrix)
+
+		// Create new line from transformed points
+		return fromPoints(transformedP1, transformedP2)
+	}
 }

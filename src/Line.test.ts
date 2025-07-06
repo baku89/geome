@@ -1,3 +1,4 @@
+import {mat2d} from 'linearly'
 import {describe, expect, it} from 'vitest'
 
 import {Line} from './Line'
@@ -164,6 +165,15 @@ describe('Line', () => {
 			const line = Line.fromPoints([0, 1], [1, 0])
 			const matrix = Line.reflectionMatrix(line)
 			expect(matrix).toEqual([0, -1, -1, 0, 1, 1])
+		})
+	})
+
+	describe('transform', () => {
+		it('should return a line that is transformed by the given matrix', () => {
+			const line = Line.fromPoints([0, 0], [1, 1])
+			const matrix = mat2d.scaling([-1, 1])
+			const transformed = Line.transform(line, matrix)
+			expect(transformed).toEqual(Line.of(225, 0))
 		})
 	})
 })

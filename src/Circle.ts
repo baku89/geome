@@ -11,7 +11,10 @@ export type Circle = {readonly center: vec2; readonly radius: number}
  * @category Modules
  */
 export namespace Circle {
-	/** A unit circle. */
+	/**
+	 * A unit circle.
+	 * @category Constants
+	 */
 	export const unit = Object.freeze({center: [0, 0], radius: 1})
 
 	/**
@@ -20,6 +23,7 @@ export namespace Circle {
 	 * @param b The second point of the triangle
 	 * @param c The third point of the triangle
 	 * @returns The circumscribed circle of the given triangle
+	 * @category Generators
 	 */
 	export function circumcircle(a: vec2, b: vec2, c: vec2): Circle | null {
 		const d =
@@ -48,6 +52,7 @@ export namespace Circle {
 	 * @param c1 The first circle
 	 * @param c2 The second circle
 	 * @returns Whether the given two circles are approximately equal
+	 * @category Functions
 	 */
 	export function approx(c1: Circle, c2: Circle): boolean {
 		return (

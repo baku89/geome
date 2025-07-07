@@ -29,8 +29,9 @@ Geome is a collection of types and functions for geometry.
 
 See the full documentation on [API](./api/).
 
-- [Line](./api/namespaces/Line): The functions for handling lines.
-- [Circle](./api/namespaces/Circle): The functions for handling circles.
-- [Rect](./api/namespaces/Rect): The functions for handling rects.
-- [Ray](./api/namespaces/Ray): The functions for handling rays.
+- [Line](./api/geome/namespaces/Line): The functions for handling lines.
+- [Circle](./api/geome/namespaces/Circle): The functions for handling circles.
+- [Rect](./api/geome/namespaces/Rect): The functions for handling rects.
+- [Ray](./api/geome/namespaces/Ray): The functions for handling rays.
+- [Segment](./api/geome/namespaces/Segment): The functions for handling segments.
 - [Type Aliases](./api/#types)

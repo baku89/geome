@@ -7,6 +7,15 @@
 	"sort": ["alphabetical"],
 	"cleanOutputDir": true,
 	"includeVersion": true,
+	"categoryOrder": [
+		"Types",
+		"Constants",
+		"Generators",
+		"Properties",
+		"Functions",
+		"Shorthands",
+		"Utilities"
+	],
 
 	"outputFileStrategy": "modules",
 

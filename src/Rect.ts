@@ -198,6 +198,7 @@ export namespace Rect {
 	 * @param bbox The rect to scale
 	 * @param scale The ratio to scale the rect by
 	 * @returns The scaled rect
+	 * @category Functions
 	 */
 	export function scale(bbox: Rect, scale: vec2 | number): Rect {
 		if (typeof scale === 'number') {
@@ -214,6 +215,7 @@ export namespace Rect {
 	 * @param bbox The rect to translate
 	 * @param offset The offset to translate the rect by
 	 * @returns The translated rect
+	 * @category Functions
 	 */
 	export function translate(bbox: Rect, offset: vec2): Rect {
 		const [min, max] = bbox
@@ -225,6 +227,7 @@ export namespace Rect {
 	 * @param rect The rect to offset
 	 * @param offset The offset to offset the rect by
 	 * @returns The offsetted rect
+	 * @category Functions
 	 */
 	export function offset(rect: Rect, offset: vec2 | number): Rect {
 		if (typeof offset === 'number') {
@@ -241,6 +244,7 @@ export namespace Rect {
 	 * @param source The source rect
 	 * @param target The target rect to check if it's contained in the source rect
 	 * @returns True if the source rect contains the target rect, false otherwise
+	 * @category Functions
 	 */
 	export function contains(source: Rect, target: Rect): boolean {
 		const [min, max] = source
@@ -258,6 +262,7 @@ export namespace Rect {
 	 * @param bbox The source rect
 	 * @param point The point to check if it's contained in the source rect
 	 * @returns True if the rect contains the point, false otherwise
+	 * @category Functions
 	 */
 	export function containsPoint(bbox: Rect, point: vec2): boolean {
 		const [min, max] = bbox
@@ -274,6 +279,7 @@ export namespace Rect {
 	 * @param a The first rect
 	 * @param b The second rect
 	 * @returns True if the rects intersect, false otherwise
+	 * @category Functions
 	 */
 	export function intersects(a: Rect, b: Rect): boolean {
 		const [amin, amax] = a
@@ -290,6 +296,7 @@ export namespace Rect {
 	 * Unites the given rects into a single rect.
 	 * @param rects The rects to unite
 	 * @returns The united rect
+	 * @category Functions
 	 */
 	export function unite(...rects: Rect[]): Rect {
 		let minX = Infinity,
@@ -314,6 +321,7 @@ export namespace Rect {
 	 * Calculates the intersection of the given rects.
 	 * @param rects The rects to intersect
 	 * @returns The intersected rect
+	 * @category Functions
 	 */
 	export function intersect(...rects: Rect[]): Rect {
 		let minX = -Infinity,
@@ -352,6 +360,7 @@ export namespace Rect {
 	 * @param object The object rect
 	 * @param mode The mode to fit the object in the frame
 	 * @returns The transform matrix
+	 * @category Functions
 	 */
 	export function objectFit(
 		frame: Rect,

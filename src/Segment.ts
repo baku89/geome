@@ -4,9 +4,14 @@ import {Line} from './Line'
 
 /**
  * A segment defined by two points. It distinguishes the order of the points.
+ * @category Types
  */
 export type Segment = [point1: vec2, point2: vec2]
 
+/**
+ * Functions for manipulating segments represented as {@link Segment}.
+ * @category Modules
+ */
 export namespace Segment {
 	/**
 	 * Returns the length of the segment.

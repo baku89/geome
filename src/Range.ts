@@ -14,6 +14,7 @@ export namespace Range {
 	 * @param a The first value of the range.
 	 * @param b The second value of the range.
 	 * @returns The created range.
+	 * @category Generators
 	 */
 	export function of(a: number, b: number): Range {
 		return [Math.min(a, b), Math.max(a, b)]
@@ -24,6 +25,7 @@ export namespace Range {
 	 * @param range The range to get the minimum value of.
 	 * @category Properties
 	 * @returns The minimum value of the range.
+	 * @category Properties
 	 */
 	export function min(range: Range): number {
 		return range[0]
@@ -34,6 +36,7 @@ export namespace Range {
 	 * @param range The range to get the maximum value of.
 	 * @category Properties
 	 * @returns The maximum value of the range.
+	 * @category Properties
 	 */
 	export function max(range: Range): number {
 		return range[1]
@@ -44,6 +47,7 @@ export namespace Range {
 	 * @param range The range to get the span of.
 	 * @category Properties
 	 * @returns The span of the range.
+	 * @category Properties
 	 */
 	export function span(range: Range): number {
 		return range[1] - range[0]
@@ -54,11 +58,19 @@ export namespace Range {
 	 * @param range The range to get the center of.
 	 * @category Properties
 	 * @returns The center of the range.
+	 * @category Properties
 	 */
 	export function center(range: Range): number {
 		return (range[0] + range[1]) / 2
 	}
 
+	/**
+	 * Offset the given range by the given offset.
+	 * @param range The range to offset.
+	 * @param offset The offset to apply.
+	 * @returns The offset range.
+	 * @category Functions
+	 */
 	export function offset(range: Range, offset: number): Range {
 		return [range[0] + offset, range[1] + offset]
 	}
@@ -69,6 +81,7 @@ export namespace Range {
 	 * @param scale The scale factor.
 	 * @param origin The center of the range to scale around.
 	 * @returns The scaled range.
+	 * @category Functions
 	 */
 	export function scale(range: Range, scale: number, origin = 0): Range {
 		return [

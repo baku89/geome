@@ -17,10 +17,16 @@ export type Line = {
  * @category Modules
  */
 export namespace Line {
-	/** A line parallel to the x-axis. */
+	/**
+	 * A line parallel to the x-axis.
+	 * @category Constants
+	 */
 	export const xAxis = Object.freeze({theta: 90, offset: 0})
 
-	/** A line parallel to the y-axis. */
+	/**
+	 * A line parallel to the y-axis.
+	 * @category Constants
+	 */
 	export const yAxis = Object.freeze({theta: 0, offset: 0})
 
 	/**
@@ -28,6 +34,7 @@ export namespace Line {
 	 * @param theta The angle of the normal vector in degrees (will be normalized to 0-360)
 	 * @param offset The signed distance from the origin
 	 * @returns A line with the given theta and offset
+	 * @category Generators
 	 */
 	export function of(theta: number, offset: number): Line {
 		return {
@@ -41,6 +48,7 @@ export namespace Line {
 	 * @param p1 The first point
 	 * @param p2 The second point
 	 * @returns A line passing through the given two points
+	 * @category Generators
 	 */
 	export function fromPoints(p1: vec2, p2: vec2): Line | null {
 		if (vec2.eq(p1, p2)) {
@@ -63,6 +71,7 @@ export namespace Line {
 	 * @param p The point
 	 * @param deg The direction angle in degrees (0 = x+)
 	 * @returns A line passing through the given point in the given direction
+	 * @category Generators
 	 */
 	export function fromPointDirection(p: vec2, deg: number): Line {
 		const theta = scalar.mod(deg + 90, 360)
@@ -77,6 +86,7 @@ export namespace Line {
 	 * @param l The line
 	 * @param p The point
 	 * @returns The closest point on the given line to the given point
+	 * @category Functions
 	 */
 	export function closest(l: Line, p: vec2): vec2 {
 		const normal = vec2.dir(l.theta)
@@ -93,6 +103,7 @@ export namespace Line {
 	 * @param l The line
 	 * @param p The point
 	 * @returns The distance from the given point to the given line
+	 * @category Functions
 	 */
 	export function distance(l: Line, p: vec2): number {
 		const normal = vec2.dir(l.theta)
@@ -104,6 +115,7 @@ export namespace Line {
 	 * @param l1 The first line
 	 * @param l2 The second line
 	 * @returns The intersection point of the given two lines. Returns `null` if the lines are parallel.
+	 * @category Functions
 	 */
 	export function intersection(l1: Line, l2: Line): vec2 | null {
 		// Convert lines to normal form: ax + by = c
@@ -136,6 +148,7 @@ export namespace Line {
 	 * @param l1 The first line
 	 * @param l2 The second line
 	 * @returns Whether the given two lines are approximately equal
+	 * @category Functions
 	 */
 	export function approx(l1: Line, l2: Line): boolean {
 		return (
@@ -148,6 +161,7 @@ export namespace Line {
 	 * @param l1 The first line
 	 * @param l2 The second line
 	 * @returns Whether the given two lines are approximately same (including opposite directions)
+	 * @category Functions
 	 */
 	export function approxSame(l1: Line, l2: Line): boolean {
 		// Check if lines are exactly the same
@@ -167,6 +181,7 @@ export namespace Line {
 	 * @param l1 The first line
 	 * @param l2 The second line
 	 * @returns Whether the given two lines are parallel
+	 * @category Functions
 	 */
 	export function isParallel(l1: Line, l2: Line): boolean {
 		const theta1 = scalar.mod(l1.theta, 180)
@@ -180,6 +195,7 @@ export namespace Line {
 	 * @param l1 The first line
 	 * @param l2 The second line
 	 * @returns Whether the given two lines are perpendicular
+	 * @category Functions
 	 */
 	export function isPerpendicular(l1: Line, l2: Line): boolean {
 		// Normalize angles to [0, 180) range and check if they differ by 90 degrees
@@ -194,6 +210,7 @@ export namespace Line {
 	 * Returns a line with the opposite direction.
 	 * @param line The line to invert
 	 * @returns A line with the opposite direction
+	 * @category Functions
 	 */
 	export function invert(line: Line): Line {
 		const oppositeTheta = scalar.mod(line.theta + 180, 360)
@@ -204,6 +221,7 @@ export namespace Line {
 	 * Returns a mat2d that reflects points across the given line.
 	 * @param line The line to use as the axis of reflection
 	 * @returns A mat2d transformation matrix for reflection
+	 * @category Functions
 	 */
 	export function reflectionMatrix(line: Line): mat2d {
 		// Convert line to normal form: ax + by + c = 0
@@ -228,6 +246,7 @@ export namespace Line {
 	 * @param line The line to transform
 	 * @param matrix The matrix to use for transformation
 	 * @returns A line that is the result of transforming the given line using the given matrix. Returns `null` if the transformation results in a line with zero length.
+	 * @category Functions
 	 */
 	export function transform(line: Line, matrix: mat2d): Line | null {
 		// Transform two points on the line using the matrix,

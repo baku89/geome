@@ -23,3 +23,40 @@ describe('unite', () => {
 		])
 	})
 })
+
+describe('Rect.offset', () => {
+	it('grows by a number or a vector', () => {
+		const rect: Rect = [
+			[0, 1],
+			[2, 3],
+		]
+		expect(Rect.offset(rect, 1)).toEqual([
+			[-1, 0],
+			[3, 4],
+		])
+		expect(Rect.offset(rect, [1, 2])).toEqual([
+			[-1, -1],
+			[3, 5],
+		])
+	})
+})
+
+describe('Rect.unite', () => {
+	it('contains all the rects', () => {
+		expect(
+			Rect.unite(
+				[
+					[0, 1],
+					[2, 3],
+				],
+				[
+					[-1, 2],
+					[1, 5],
+				]
+			)
+		).toEqual([
+			[-1, 1],
+			[2, 5],
+		])
+	})
+})

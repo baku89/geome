@@ -46,7 +46,9 @@ export namespace Rect {
 			maxX = -Infinity,
 			maxY = -Infinity
 
-		for (const [x, y] of points) {
+		for (let i = 0; i < points.length; i++) {
+			const x = points[i][0]
+			const y = points[i][1]
 			minX = Math.min(minX, x)
 			minY = Math.min(minY, y)
 			maxX = Math.max(maxX, x)
@@ -230,13 +232,13 @@ export namespace Rect {
 	 * @category Functions
 	 */
 	export function offset(rect: Rect, offset: vec2 | number): Rect {
-		if (typeof offset === 'number') {
-			offset = [offset, offset]
-		}
+		const x = typeof offset === 'number' ? offset : offset[0]
+		const y = typeof offset === 'number' ? offset : offset[1]
 
-		const [min, max] = rect
-
-		return [vec2.sub(min, offset), vec2.add(max, offset)]
+		return [
+			[rect[0][0] - x, rect[0][1] - y],
+			[rect[1][0] + x, rect[1][1] + y],
+		]
 	}
 
 	/**
@@ -304,7 +306,9 @@ export namespace Rect {
 			maxX = -Infinity,
 			maxY = -Infinity
 
-		for (const [min, max] of rects) {
+		for (let i = 0; i < rects.length; i++) {
+			const min = rects[i][0]
+			const max = rects[i][1]
 			minX = Math.min(minX, min[0])
 			minY = Math.min(minY, min[1])
 			maxX = Math.max(maxX, max[0])

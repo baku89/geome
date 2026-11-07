@@ -1,6 +1,7 @@
 export * from './Circle'
 export * from './Line'
 export * from './Range'
+export * from './Ray'
 export * from './Rect'
 export * from './Segment'
 export * from './utils'
